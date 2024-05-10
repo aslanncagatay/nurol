@@ -53,3 +53,19 @@ jobs:
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Assume IAM role for EKS cluster
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::058264413515:role/eksClusterRole
+        role-session-name: deploy-to-eks
+
+    - name: Update kubeconfig with EKS cluster credentials
+      run: echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 -d > $HOME/.kube/config
+
+    - name: Deploy to Amazon EKS
+      run: kubectl apply -f k8s/
