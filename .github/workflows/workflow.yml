@@ -61,6 +61,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Install AWS CLI and eksctl
+      run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+        sudo apt-get update && sudo apt-get install -y eksctl
+
     - name: Install kubectl
       uses: azure/setup-kubectl@v2.0
       with:
@@ -76,9 +83,6 @@ jobs:
 
     - name: Authenticate with EKS cluster
       run: aws eks --region eu-north-1 update-kubeconfig --name nurol-cluster
-
-    - name: Update kubeconfig with EKS cluster credentials
-      run: echo ${{ secrets.KUBE_CONFIG_DATA }}
 
     - name: Deploy to Amazon EKS
       run: kubectl apply -f k8s/
