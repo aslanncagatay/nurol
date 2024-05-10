@@ -77,5 +77,8 @@ jobs:
     - name: Authenticate with EKS cluster
       run: aws eks --region eu-north-1 update-kubeconfig --name nurol-cluster
 
+    - name: Update kubeconfig with EKS cluster credentials
+      run: echo ${{ secrets.KUBE_CONFIG_DATA }}
+
     - name: Deploy to Amazon EKS
       run: kubectl apply -f k8s/
