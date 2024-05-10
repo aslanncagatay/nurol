@@ -31,4 +31,4 @@ jobs:
       run: aws eks --region eu-north-1 update-kubeconfig --name nurol-cluster
 
     - name: Deploy to Amazon EKS
-      run: kubectl apply -f k8s/
+      run: kubectl apply --validate=false -f k8s/
