@@ -9,6 +9,8 @@ management:
 spring:
   application:
     name: api-gateway
+  config:
+    import: "optional:configserver:http://config-server-svc:80"
   cloud:
     gateway:
       routes:
@@ -16,20 +18,10 @@ spring:
           uri: lb://employee-service
           predicates:
             - Path=/employee/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: employee-service
-                fallbackuri: forward:/employeeServiceFallBack
         - id: department-service
           uri: lb://department-service
           predicates:
             - Path=/department/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: department-service
-                fallbackuri: forward:/departmentServiceFallBack
 
 eureka:
   instance:

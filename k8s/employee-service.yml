@@ -1,0 +1,45 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service-app
+  labels:
+    app: employee-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-service-app
+  template:
+    metadata:
+      labels:
+        app: employee-service-app
+    spec:
+      containers:
+      - name: employee-service-app
+        image: reverendray/employee-service:0.0.1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8082
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service-svc
+spec:
+  selector:
+    app: employee-service-app
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8082
+---

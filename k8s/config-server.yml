@@ -1,0 +1,46 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-app
+  labels:
+    app: config-server-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server-app
+  template:
+    metadata:
+      labels:
+        app: config-server-app
+    spec:
+      containers:
+      - name: config-server-app
+        image: reverendray/config-server:0.0.1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8888
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-svc
+spec:
+  selector:
+    app: config-server-app
+  type: ClusterIP
+  ports:
+  - targetPort: 8888
+    port: 80
+    
+---
