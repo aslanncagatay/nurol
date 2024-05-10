@@ -26,10 +26,10 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws-region: eu-north-1
 
     - name: Authenticate with EKS cluster
-      run: aws eks --region us-east-1 update-kubeconfig --name nurol-cluster
+      run: aws eks --region eu-north-1 update-kubeconfig --name nurol-cluster
 
     - name: Deploy to Amazon EKS
       run: kubectl apply -f k8s/
