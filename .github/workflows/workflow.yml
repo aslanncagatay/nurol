@@ -72,7 +72,7 @@ jobs:
         sudo mv ./kubectl /usr/local/bin/kubectl
 
     - name: Authenticate with EKS cluster
-      run: aws eks --region us-east-1 update-kubeconfig --name nurol-cluster
+      run: aws eks --region eu-north-1 update-kubeconfig --name nurol-cluster
 
     - name: Deploy to Amazon EKS
       run: kubectl apply -f k8s/
