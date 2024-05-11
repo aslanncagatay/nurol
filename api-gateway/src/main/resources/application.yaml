@@ -22,6 +22,10 @@ spring:
           uri: lb://department-service
           predicates:
             - Path=/department/**
+        - id: sender-service
+          uri: lb://sender-service
+          predicates:
+            - Path=/rabbitmq/**
 
 eureka:
   instance:

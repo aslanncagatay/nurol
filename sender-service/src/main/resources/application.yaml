@@ -1,0 +1,24 @@
+
+server:
+  port: 8090
+
+spring:
+  application:
+    name: sender-service
+  config:
+    import: "optional:configserver:http://config-server-svc:80"
+  rabbitmq:
+    host: rabbitmq-svc
+    port: 80
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-0
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
