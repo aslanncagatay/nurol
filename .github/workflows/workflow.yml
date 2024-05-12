@@ -78,8 +78,8 @@ jobs:
         with:
           eks-region: eu-north-1
           eks-cluster-name: <EKS_CLUSTER_NAME>
-          eks-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          eks-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    - name: Deploy to Amazon EKS
-      run: kubectl apply -f k8s/
+      - name: Deploy to Amazon EKS
+        run: kubectl apply -f k8s/
