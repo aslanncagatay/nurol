@@ -33,8 +33,8 @@ jobs:
         push: true
         tags: reverendray/front-end:latest
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Building and Pushing employee-service
       run: mvn package -DskipTests dockerfile:push --file employee-service/pom.xml
