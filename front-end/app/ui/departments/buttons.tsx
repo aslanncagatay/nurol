@@ -29,7 +29,7 @@ export function ReturnBack() {
   );
 }
 
-export function ViewEmployees({ id }: { id: string }) {
+export function ViewEmployees({ id }: { id: number }) {
   return (
     <Link href={`/departments/${id}`} className="p-2">
       <MagnifyingGlassIcon className="w-5" />
