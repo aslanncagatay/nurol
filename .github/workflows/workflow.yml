@@ -71,7 +71,7 @@ jobs:
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t front-end .
+      run: docker build -t front-end/ .
 
     - name: Run Docker container
       run: docker run -p 3000:3000 --detach --rm front-end
