@@ -29,7 +29,7 @@ jobs:
           aws-region: us-east-1
           
       - name: Authenticate with EKS cluster
-        run: aws eks --region eu-north-1 update-kubeconfig --name nurol_cluster
+        run: aws eks --region us-east-1 update-kubeconfig --name nurol_cluster
         
       - name: Deploy to Amazon EKS
         run: kubectl apply -f k8s/
