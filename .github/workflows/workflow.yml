@@ -99,13 +99,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ secrets.AWS_REGION }}
           
       - name: Authenticate with EKS cluster
-        run: aws eks --region us-east-1 update-kubeconfig --name nurol_cluster
+        run: aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name  ${{ secrets.EKS_CLUSTER_NAME }}
 
       - name: Delete all pods in namespace
-        run: kubectl delete all --all --namespace default
+        run: kubectl delete all --all --namespace ${{ EKS_CLUSTER_NAMESPACE }}
         
       - name: Deploy to Amazon EKS
         run: kubectl apply -f k8s/
