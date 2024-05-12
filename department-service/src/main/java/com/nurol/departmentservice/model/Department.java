@@ -6,14 +6,20 @@ import java.util.List;
 public class Department {
     private Long id;
     private String name;
+    private String phone;
+    private String location;
+    private Long budget;
     private List<Employee> employees = new ArrayList<>();
 
     public Department() {
     }
 
-    public Department(Long id, String name) {
+    public Department(Long id, String name, String phone, String location, Long budget, List<Employee> employees) {
         this.id = id;
         this.name = name;
+        this.phone = phone;
+        this.location = location;
+        this.budget = budget;
     }
 
     @Override
@@ -21,7 +27,9 @@ public class Department {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", employees=" + employees +
+                ", phone='" + phone + '\'' +
+                ", location='" + location + '\'' +
+                ", budget=" + budget +
                 '}';
     }
 
@@ -40,6 +48,31 @@ public class Department {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Long getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Long budget) {
+        this.budget = budget;
+    }
+
 
     public List<Employee> getEmployees() {
         return employees;
