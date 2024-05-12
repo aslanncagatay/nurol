@@ -103,6 +103,9 @@ jobs:
           
       - name: Authenticate with EKS cluster
         run: aws eks --region us-east-1 update-kubeconfig --name nurol_cluster
+
+      - name: Delete all pods in namespace
+        run: kubectl delete all --all --namespace default
         
       - name: Deploy to Amazon EKS
         run: kubectl apply -f k8s/
