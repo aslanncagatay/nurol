@@ -20,21 +20,21 @@ jobs:
         distribution: 'adopt'
         server-id: docker.io
         server-username: MAVEN_USERNAME
-        server-password: MAVEN_PASSWORD        
+        server-password: MAVEN_PASSWORD
+        
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
 
     - name: Build and push Docker image
-      run: |
-        docker build -t reverendray/front-end:latest .
-        docker push reverendray/front-end:latest
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: reverendray/front-end:latest
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          
-    - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      env:
-        DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Building and Pushing employee-service
       run: mvn package -DskipTests dockerfile:push --file employee-service/pom.xml
