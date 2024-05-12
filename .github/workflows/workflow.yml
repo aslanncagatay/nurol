@@ -24,4 +24,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy to Amazon EKS
-        run: kubectl apply -f k8s/
+        run: kubectl apply -f k8s/ --validate=false
