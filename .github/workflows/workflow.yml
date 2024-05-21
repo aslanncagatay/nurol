@@ -102,7 +102,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           
       - name: Authenticate with EKS cluster
-        run: aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name  ${{ secrets.EKS_CLUSTER_NAME }}
+        run: aws eks --region eu-north-1 update-kubeconfig --name  nurol_cluster
 
       - name: Delete all pods in namespace
         run: kubectl delete all --all --namespace default
