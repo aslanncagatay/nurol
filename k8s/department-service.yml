@@ -23,11 +23,11 @@ spec:
           - containerPort: 8081
         resources:
           requests:
-            cpu: 50m
-            memory: 100Mi
+            cpu: 100m
+            memory: 256Mi
           limits:
-            cpu: 50m
-            memory: 100Mi
+            cpu: 250m
+            memory: 512Mi
 ---
 
 # https://kubernetes.io/docs/concepts/services-networking/service/
