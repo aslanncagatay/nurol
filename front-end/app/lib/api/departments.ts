@@ -50,7 +50,7 @@ export async function createDepartment(prevState: State, formData: FormData) {
 
   try {
     // Call addDepartment endpoint
-    const response = await fetch("http://api-gateway-svc:80/department", {
+    const response = await fetch("http://af2ac53b90620498aa95b5ca5c35c9c6-694563710.eu-north-1.elb.amazonaws.com/department", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export async function createDepartment(prevState: State, formData: FormData) {
 export async function getDepartments(): Promise<Department[]> {
   try {
     // Call addDepartment endpoint
-    const response = await fetch("http://api-gateway-svc:80/department", {
+    const response = await fetch("http://af2ac53b90620498aa95b5ca5c35c9c6-694563710.eu-north-1.elb.amazonaws.com/department", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export async function getDepartmentWithEmployees(
   try {
     // Call addDepartment endpoint
     const response = await fetch(
-      `http://api-gateway-svc:80/department/with-employees/${departmentId}`,
+      `http://af2ac53b90620498aa95b5ca5c35c9c6-694563710.eu-north-1.elb.amazonaws.com/department/with-employees/${departmentId}`,
       {
         method: "GET",
         headers: {

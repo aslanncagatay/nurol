@@ -50,7 +50,7 @@ export async function createEmployee(prevState: State, formData: FormData) {
 
   try {
     // Call addEmployee endpoint
-    const response = await fetch("http://api-gateway-svc:80/employee", {
+    const response = await fetch("http://af2ac53b90620498aa95b5ca5c35c9c6-694563710.eu-north-1.elb.amazonaws.com/employee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export async function createEmployee(prevState: State, formData: FormData) {
 export async function getEmployees(): Promise<Employee[]> {
   try {
     // Call addEmployee endpoint
-    const response = await fetch("http://api-gateway-svc:80/employee", {
+    const response = await fetch("http://af2ac53b90620498aa95b5ca5c35c9c6-694563710.eu-north-1.elb.amazonaws.com/employee", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

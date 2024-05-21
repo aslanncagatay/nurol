@@ -42,7 +42,7 @@ export async function sendMessage(prevState: State, formData: FormData) {
 
   try {
     // Call addDepartment endpoint
-    const response = await fetch("http://api-gateway-svc:80/rabbitmq/send", {
+    const response = await fetch("http://af2ac53b90620498aa95b5ca5c35c9c6-694563710.eu-north-1.elb.amazonaws.com/rabbitmq/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
