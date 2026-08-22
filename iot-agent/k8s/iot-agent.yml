@@ -1,0 +1,39 @@
+# Not in the repo-root k8s/ folder on purpose: the deploy pipeline runs
+# `kubectl apply -f k8s/`, so this manifest should only move up there once the
+# reverendray/iot-agent image is actually built and pushed by the CI workflow.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iot-agent-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iot-agent
+  template:
+    metadata:
+      labels:
+        app: iot-agent
+    spec:
+      containers:
+        - name: iot-agent
+          image: reverendray/iot-agent:0.0.1
+          args: ["--consume"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: RABBITMQ_HOST
+              value: rabbitmq-svc
+            - name: RABBITMQ_PORT
+              value: "80"
+            - name: RABBITMQ_QUEUE
+              value: iot_agent_queue
+            - name: RABBITMQ_EXCHANGE
+              value: message_exchange
+            - name: RABBITMQ_ROUTING_KEY
+              value: message_routingKey
